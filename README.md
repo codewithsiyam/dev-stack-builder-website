@@ -1,129 +1,113 @@
-# 🧱 Dev Stack Builder
+# Dev Stack Builder
 
-This is my submission for Programming Hero Assignment #05. It's a small
-React + TypeScript app where you can browse a list of frontend, backend,
-database, and tooling technologies, and build your own "stack" by adding
-the ones you'd actually use on a project.
+## Project Description
 
-## 📖 What it does
+Dev Stack Builder is a responsive React and TypeScript application where
+users can explore different web development technologies and put together
+their own development stack. Each technology is shown as a card with its
+category, difficulty, rating, and description, and users can add or remove
+technologies from a personal stack at any time.
 
-Every technology shows up as a card with an icon, a short description, its
-category, difficulty level, and a rating. Hit **Add to Stack** and it drops
-into the **Your Stack** panel on the side, where you can pull items back out
-one at a time or wipe the whole thing with **Remove All**. Try adding the
-same thing twice and you'll get a warning toast instead of a duplicate —
-every add, remove, and duplicate attempt pops a toast notification so you
-always know what just happened.
+## Technologies Used
 
-## 🛠️ Built with
-
-- React 19 (Vite) + TypeScript
+- React
+- TypeScript
+- Vite
 - Tailwind CSS
 - React-Toastify
-- JSON, fetched at runtime instead of hardcoded into a component
+- JSON
 
-## ✨ A few things worth pointing out
+## Features
 
-1. **Duplicate protection that actually works** — once something's in your
-   stack, its "Add to Stack" button disables itself and switches to
-   "✓ Added to Stack," so there's no way to add the same card twice by
-   accident.
-2. **One gradient, defined once** — the orange → pink → violet gradient
-   used on the brand name, the hero heading, and every primary button all
-   comes from a single value in `tailwind.config.js`. Change it there and
-   it updates everywhere.
-3. **Actually responsive, not just "mostly fine on desktop"** — 3 columns
-   on desktop, 2 on tablet, 1 on mobile, with a proper hamburger menu for
-   the navbar instead of links just disappearing.
+1. **Explore Technologies**
+   Browse technologies with their icon, name, category, description,
+   difficulty, and rating, loaded from an external JSON file.
 
-## 📂 How the project is laid out
+2. **Build Your Own Stack**
+   Add any technology to a personal stack. The same technology cannot be
+   added twice — trying to do so shows a warning toast instead.
+
+3. **Manage Your Stack**
+   Remove technologies one at a time, or clear the whole stack with a
+   single "Remove All" button. Every add, duplicate attempt, remove, and
+   remove-all triggers a toast notification.
+
+## Project Structure
 
 \`\`\`
-dev-stack-builder-website/
-├── public/
-│ └── technologies.json # the technology data, loaded with fetch()
-├── src/
-│ ├── assets/ # hero banner image
-│ ├── types/
-│ │ └── technology.ts # shared TypeScript type for a technology
-│ ├── components/
-│ │ ├── Navbar.tsx
-│ │ ├── Hero.tsx
-│ │ ├── TechnologyGrid.tsx # fetches the data, handles loading/error/cards
-│ │ ├── TechnologyCard.tsx
-│ │ ├── YourStack.tsx
-│ │ ├── Projects.tsx
-│ │ ├── About.tsx
-│ │ └── Footer.tsx
-│ ├── App.tsx # owns the stack state, wires everything together
-│ ├── main.tsx
-│ └── index.css
-├── tailwind.config.js # the one place the gradient lives
-└── package.json
+src/
+├── assets/                # logo and hero images
+├── types/
+│   └── technology.ts      # shared TypeScript type for a technology
+|---ui/
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── TechnologyGrid.tsx # fetches JSON data, handles loading/error/cards
+│   ├── TechnologyCard.tsx
+│   ├── YourStack.tsx
+│   ├── Projects.tsx
+│   ├── About.tsx
+│   └── Footer.tsx
+├── App.tsx               # owns the stack state
+├── main.tsx
+└── index.css
 \`\`\`
 
-## 🚀 Running it locally
+## Getting Started
 
 \`\`\`bash
 npm install
 npm run dev
 \`\`\`
 
-Then open whatever local URL Vite prints (usually `http://localhost:5173`).
+---
 
-## ❓ React Q&A
+## React Questions
 
 **1. What is JSX, and why is it used in React?**
-JSX lets you write something that looks like HTML right inside your
-JavaScript, instead of building the UI with a bunch of
-`React.createElement()` calls by hand. It's just easier to read and reason
-about when the markup actually looks like markup.
+JSX is a syntax that lets us write HTML-like code inside JavaScript or
+TypeScript. React uses it because it makes component markup easier to read
+and reason about than nested `React.createElement()` calls.
 
-**2. What's the difference between props and state?**
-Props get passed into a component from the outside, and the component
-itself can't change them — they're read-only from its perspective. State is
-the opposite: it lives inside the component, and the component is free to
-update it (usually with `useState`). In this project, `technology` is a
-prop handed to `TechnologyCard`, while `stack` is state that lives in `App`
-and changes every time you add or remove something.
+**2. What is the difference between props and state?**
+Props are data passed from a parent component to a child component, and
+the child cannot change them. State is data owned and managed inside a
+component, and it changes over time — for example, via `useState`.
 
-**3. What does `useState` do, and where did I use it here?**
-It gives a component a piece of memory that survives between renders, and
-re-renders the component automatically whenever that value changes. I'm
-using it in a few places: `App.tsx` for the `stack` array,
-`TechnologyGrid.tsx` for `technologies`, `isLoading`, and `loadError`, and
-`Navbar.tsx` for whether the mobile menu is currently open.
+**3. What does the `useState` hook do, and where did you use it in this project?**
+`useState` lets a component store and update data, re-rendering whenever
+that data changes. It's used in `App.tsx` to store the stack, and in
+`TechnologyGrid.tsx` to store the fetched technologies and the loading
+state.
 
-**4. What does `useEffect` do, and why did I need it for loading the JSON?**
-`useEffect` lets you run code after a component renders — things like
-network requests, which shouldn't happen _during_ rendering. That's exactly
-what fetching `technologies.json` is, so the `fetch()` call sits inside a
-`useEffect` in `TechnologyGrid.tsx` with an empty dependency array, meaning
-it only runs once, right when that component first mounts.
+**4. What does the `useEffect` hook do, and why did you need it to load the JSON data?**
+`useEffect` runs code after a component renders — a network request is a
+side effect that shouldn't run during render. The `fetch()` call for
+`technologies.json` runs inside a `useEffect` with an empty dependency
+array in `TechnologyGrid.tsx`, so it only runs once, when the component
+mounts.
 
-**5. Why does every item in a `.map()` list need a unique `key`?**
-So React can tell items apart across re-renders and know exactly which one
-got added, removed, or moved — without a stable key it can end up updating
-the wrong DOM node or losing a component's internal state by mistake. I use
-each technology's `id` as the key, both in the grid and in the stack list.
+**5. Why does every item in a `.map()` list need a unique `key` prop?**
+React uses the `key` to tell items in a list apart between renders, so it
+knows exactly which one was added, removed, or changed. Each technology's
+`id` is used as the key here.
 
-**6. What's conditional rendering, and where did I use it?**
-It just means showing different UI depending on some condition instead of
-always rendering the same markup. A good example is in `YourStack.tsx`: if
-the stack is empty, it shows "Your stack is empty," and if it's not, it
-maps over the array and renders the actual list instead.
+**6. What is conditional rendering? Show one place you used it.**
+Conditional rendering means showing different UI depending on a condition.
+In `YourStack.tsx`, an empty-stack message is shown when the stack has no
+items, and the list of selected technologies is shown otherwise.
 
-**7. How does data flow from parent to child, and how does a child send something back up?**
-Parent to child is just props — `TechnologyGrid` hands `technology` and
-`isAdded` down to each `TechnologyCard`. Going the other direction, the
-parent passes a function down as a prop, and the child calls it (usually
-with some data). Here, `App` owns `handleAddToStack` and passes it down
-through `TechnologyGrid` to every card as `onAddToStack`. When you click the
-button, the card calls `onAddToStack(technology)`, which runs the handler
-back in `App` and updates the `stack` state.
+**7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?**
+A parent passes data down to a child as props. To send something back up,
+the parent passes a function down as a prop, and the child calls it —
+for example, `App` passes `handleAddToStack` down to `TechnologyGrid`,
+which forwards it to each `TechnologyCard` as `onAddToStack`.
 
-## 📤 Submission
+---
+
+## Submission
 
 - GitHub Repository Link : https://github.com/codewithsiyam/dev-stack-builder-website.git
 
-- Live Site Link(Netlify) :
+- Live Site Link(Netlify) : https://dev-stack-builder-siyam.netlify.app
