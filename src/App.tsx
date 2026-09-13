@@ -2,14 +2,14 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Navbar from "../components/Navbar.tsx";
-import Hero from "../components/Hero.tsx";
-import TechnologyGrid from "../components/TechnologyGrid.tsx";
-import YourStack from "../components/YourStack.tsx";
-import Projects from "../components/Projects.tsx";
-import About from "../components/About.tsx";
-import Footer from "../components/Footer.tsx";
-import type { Technology } from "./technology.ts";
+import Navbar from "./components/Navbar.tsx";
+import Hero from "./components/Hero.tsx";
+import TechnologyGrid from "./components/TechnologyGrid.tsx";
+import YourStack from "./components/YourStack.tsx";
+import Projects from "./components/Projects.tsx";
+import About from "./components/About.tsx";
+import Footer from "./components/Footer.tsx";
+import type { Technology } from "./types/technology.ts";
 
 function App() {
   // The user's selected stack lives here since both the grid (to know which
