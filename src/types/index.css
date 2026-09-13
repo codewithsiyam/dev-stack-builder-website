@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Reusable helper: applies the single shared brand gradient as text color.
+     Used by the brand name and the hero heading highlight so both always
+     stay in sync with the gradient defined in tailwind.config.js */
+  .text-brand-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    sans-serif;
+}
