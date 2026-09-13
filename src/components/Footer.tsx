@@ -1,3 +1,5 @@
+import logoText from "../assets/logo-text.png";
+
 interface FooterLink {
   label: string;
   href: string;
@@ -48,14 +50,9 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {/* Brand block */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <a href="#home" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-gradient text-sm font-bold text-white">
-              DS
-            </span>
-            <span className="text-lg font-bold">
-              Dev <span className="text-brand-gradient">Stack</span>
-            </span>
-          </a>
+          <a href="#home" className="flex items-center">
+  <img src={logoText} alt="Dev Stack logo" className="h-8 w-auto" />
+</a>
           <p className="mt-4 max-w-xs text-sm text-slate-500">
             Curated tools, technologies, and resources for developers building
             modern software.
@@ -78,9 +75,7 @@ function Footer() {
         {/* Link groups */}
         {LINK_GROUPS.map((group) => (
           <div key={group.title}>
-            <h4 className="text-xs font-bold uppercase tracking-wide text-slate-400">
-              {group.title}
-            </h4>
+            <h4 className="text-xs font-bold uppercase tracking-wide text-slate-500">{group.title} </h4>
             <ul className="mt-4 flex flex-col gap-2.5 text-sm text-slate-500">
               {group.links.map((link) => (
                 <li key={link.label}>

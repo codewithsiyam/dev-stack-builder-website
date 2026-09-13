@@ -20,13 +20,13 @@ function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#technologies"
-              className="rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-90"
+              className="rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-90"
             >
               Explore Technologies
             </a>
             <a
               href="#about"
-              className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
+              className="rounded-xl border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
             >
               Learn More
             </a>

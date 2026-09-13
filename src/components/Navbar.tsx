@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logoText from "../assets/logo-text.png";
 
 const NAV_LINKS: string[] = ["Home", "Technologies", "Projects", "About", "Contact"];
 
@@ -33,17 +34,12 @@ function Navbar() {
         </button>
 
         {/* Logo + brand name (centered on mobile via flex-1, left-aligned on desktop) */}
-        <a
-          href="#home"
-          className="flex flex-1 items-center justify-center gap-2 md:mr-8 md:flex-none md:justify-start"
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-gradient text-sm font-bold text-white">
-            DS
-          </span>
-          <span className="text-lg font-bold">
-            Dev <span className="text-brand-gradient">Stack</span>
-          </span>
-        </a>
+        <a     
+  href="#home"
+  className="flex flex-1 items-center justify-center md:mr-8 md:flex-none md:justify-start"
+>
+  <img src={logoText} alt="Dev Stack logo" className="h-8 w-auto" />
+</a>
 
         {/* Desktop center nav links */}
         <ul className="hidden flex-1 items-center justify-center gap-8 text-sm font-medium text-slate-600 md:flex">
